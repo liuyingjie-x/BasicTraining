@@ -14,19 +14,19 @@ class CircleView @JvmOverloads constructor(
     var paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     companion object {
-        val PADDING = Utils.dpToPixel(100f)
-        val RADIUS = Utils.dpToPixel(200f)
+        val PADDING = Utils.dpToPixel(30f)
+        val RADIUS = Utils.dpToPixel(20f)
 
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-//        var width = ((PADDING + RADIUS) * 2).toInt()
-//        var height = ((PADDING + RADIUS) * 2).toInt()
+        var width = ((PADDING + RADIUS) * 2).toInt()
+        var height = ((PADDING + RADIUS) * 2).toInt()
 
-//        width = resolveSizeAndState(width, widthMeasureSpec, 0)
-//        height = resolveSizeAndState(height, widthMeasureSpec, 0)
-//        setMeasuredDimension(width, height)
+        width = resolveSizeAndState(width, widthMeasureSpec, 0)
+        height = resolveSizeAndState(height, widthMeasureSpec, 0)
+        setMeasuredDimension(width, height)
     }
 
     override fun onDraw(canvas: Canvas?) {
