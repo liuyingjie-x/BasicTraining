@@ -1,7 +1,9 @@
 package com.example.retrofit
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.retrofit.model.Repo
 import com.example.retrofit.model.WanAndroid
@@ -17,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        findViewById<TextView>(R.id.tv_hello).setOnClickListener {
+            val intent = Intent(this, WebActivity::class.java)
+            startActivity(intent)
+        }
         request()
     }
 
