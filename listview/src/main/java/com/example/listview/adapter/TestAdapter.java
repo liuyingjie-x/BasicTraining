@@ -1,6 +1,7 @@
 package com.example.listview.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,6 @@ public class TestAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
-        return 4;
-    }
-
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder1 viewHolder1 = null;
         ViewHolder2 viewHolder2 = null;
@@ -69,14 +65,14 @@ public class TestAdapter extends BaseAdapter {
                     convertView.setTag(viewHolder2);
                     break;
                 case 3:
-                    convertView = LayoutInflater.from(context).inflate(R.layout.item_empty, null);
-                    viewHolderEmpty = new ViewHolderEmpty();
-                    convertView.setTag(viewHolderEmpty);
-                    break;
-                default:
                     convertView = LayoutInflater.from(context).inflate(R.layout.item_three, null);
                     viewHolder3 = new ViewHolder3();
                     convertView.setTag(viewHolder3);
+                    break;
+                default:
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_empty, null);
+                    viewHolderEmpty = new ViewHolderEmpty();
+                    convertView.setTag(viewHolderEmpty);
                     break;
 
             }
@@ -96,60 +92,75 @@ public class TestAdapter extends BaseAdapter {
                     break;
             }
         }
-//        switch (type) {
-//            case 1:
-//                if (convertView == null || !(convertView.getTag() instanceof ViewHolder1)) {
-//                    viewHolder1 = new ViewHolder1();
-//                    convertView = LayoutInflater.from(context).inflate(R.layout.item_one, null);
-//                    convertView.setTag(viewHolder1);
-//                } else {
-//                    viewHolder1 = (ViewHolder1) convertView.getTag();
-//                }
-//                break;
-//            case 2:
-//                if (convertView == null || !(convertView.getTag() instanceof ViewHolder2)) {
-//                    viewHolder2 = new ViewHolder2();
-//                    convertView = LayoutInflater.from(context).inflate(R.layout.item_two, null);
-//                    convertView.setTag(viewHolder2);
-//                } else {
-//                    viewHolder2 = (ViewHolder2) convertView.getTag();
-//                }
-//                break;
-//            case 3:
-//                if (convertView == null || !(convertView.getTag() instanceof ViewHolderEmpty)) {
-//                    viewHolderEmpty = new ViewHolderEmpty();
-//                    convertView = LayoutInflater.from(context).inflate(R.layout.item_empty, null);
-//                    convertView.setTag(viewHolderEmpty);
-//                } else {
-//                    viewHolderEmpty = (ViewHolderEmpty) convertView.getTag();
-//                }
-//                break;
-//            default:
-//                if (convertView == null || !(convertView.getTag() instanceof ViewHolder3)) {
-//                    viewHolder3 = new ViewHolder3();
-//                    convertView = LayoutInflater.from(context).inflate(R.layout.item_three, null);
-//                    convertView.setTag(viewHolder3);
-//                } else {
-//                    viewHolder3 = (ViewHolder3) convertView.getTag();
-//                }
-//                break;
-//
-//        }
+/*        switch (type) {
+            case 1:
+                if (convertView == null || !(convertView.getTag() instanceof ViewHolder1)) {
+                    viewHolder1 = new ViewHolder1();
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_one, null);
+                    convertView.setTag(viewHolder1);
+                } else {
+                    viewHolder1 = (ViewHolder1) convertView.getTag();
+                    Log.e("11111", "getView: " + "viewHolder1=" + position);
+                }
+                break;
+            case 2:
+                if (convertView == null || !(convertView.getTag() instanceof ViewHolder2)) {
+                    viewHolder2 = new ViewHolder2();
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_two, null);
+                    convertView.setTag(viewHolder2);
+                } else {
+                    viewHolder2 = (ViewHolder2) convertView.getTag();
+                    Log.e("11111", "getView: " + "viewHolder2=" + position);
+                }
+                break;
+            case 3:
+                if (convertView == null || !(convertView.getTag() instanceof ViewHolderEmpty)) {
+                    viewHolderEmpty = new ViewHolderEmpty();
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_empty, null);
+                    convertView.setTag(viewHolderEmpty);
+                } else {
+                    viewHolderEmpty = (ViewHolderEmpty) convertView.getTag();
+                    Log.e("11111", "getView: " + "viewHolderEmpty=" + position);
+                }
+                break;
+            default:
+                if (convertView == null || !(convertView.getTag() instanceof ViewHolder3)) {
+                    viewHolder3 = new ViewHolder3();
+                    convertView = LayoutInflater.from(context).inflate(R.layout.item_three, null);
+                    convertView.setTag(viewHolder3);
+                } else {
+                    viewHolder3 = (ViewHolder3) convertView.getTag();
+                    Log.e("11111", "getView: " + "viewHolder3=" + position);
+                }
+                break;
+
+        }*/
         return convertView;
     }
 
-    public class ViewHolder1 {
+
+    @Override
+    public int getItemViewType(int position) {
+        return list.get(position).type;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 5;
+    }
+
+    public static class ViewHolder1 {
         ImageView imageView;
     }
 
-    public class ViewHolder2 {
+    public static class ViewHolder2 {
         TextView textView;
     }
 
-    public class ViewHolder3 {
+    public static class ViewHolder3 {
         Button button;
     }
 
-    public class ViewHolderEmpty {
+    public static class ViewHolderEmpty {
     }
 }
